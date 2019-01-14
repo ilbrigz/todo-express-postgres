@@ -50,7 +50,7 @@ const updateTodos = (request, response) => {
   const id = parseInt(request.params.id);
   const { task } = request.body;
   pool.query(
-    "UPDATE todos SET name = $1 WHERE id = $3",
+    "UPDATE todos SET task = $1 WHERE id = $2",
     [task, id],
     (error, results) => {
       if (error) {
@@ -68,7 +68,6 @@ const deleteTodos = (request, response) => {
     if (error) {
       throw error;
     }
-    console.log(response);
     response.status(200).send(`Tasks deleted with ID: ${id}`);
   });
 };
